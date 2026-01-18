@@ -5,12 +5,69 @@
         <meta name = "viewport" content = "width=device-width, initial-scale=1.0" />
         <title>Square Deal</title>
         <link rel = "stylesheet" href = "/style.css" />
+        <link rel = "stylesheet" href = "play_style.css" />
         <script src="/script.js"></script>
     </head>
     <body>
-        <h1 class = "title">Square Deal</h1>
-        <div class = menu>
-            Play
+        <header>
+            <button onclick = "goTo('/')">← Back to Home</button>
+            <div class = "score">Player A Score: 0</div>
+            <div class = "score">Player B Score: 0</div>
+        </header>
+        <main class = "wrapper">
+            <div>
+                <p>Player A:</p>
+                <div class = "grid" data-grid = "A">
+                    <div class="cell" data-row = "0" data-col = "0"></div>
+                    <div class="cell" data-row = "0" data-col = "1"></div>
+                    <div class="cell" data-row = "0" data-col = "2"></div>
+                    <div class="cell" data-row = "0" data-col = "3"></div>
+    
+                    <div class="cell" data-row = "1" data-col = "0"></div>
+                    <div class="cell" data-row = "1" data-col = "1"></div>
+                    <div class="cell" data-row = "1" data-col = "2"></div>
+                    <div class="cell" data-row = "1" data-col = "3"></div>
+    
+                    <div class="cell" data-row = "2" data-col = "0"></div>
+                    <div class="cell" data-row = "2" data-col = "1"></div>
+                    <div class="cell" data-row = "2" data-col = "2"></div>
+                    <div class="cell" data-row = "2" data-col = "3"></div>
+    
+                    <div class="cell" data-row = "3" data-col = "0"></div>
+                    <div class="cell" data-row = "3" data-col = "1"></div>
+                    <div class="cell" data-row = "3" data-col = "2"></div>
+                    <div class="cell" data-row = "3" data-col = "3"></div>
+                </div>
+            </div>
+            <div>
+                <p>Player B:</p>
+                <div class = "grid" data-grid = "B">
+                    <div class="cell" data-row = "0" data-col = "0"></div>
+                    <div class="cell" data-row = "0" data-col = "1"></div>
+                    <div class="cell" data-row = "0" data-col = "2"></div>
+                    <div class="cell" data-row = "0" data-col = "3"></div>
+    
+                    <div class="cell" data-row = "1" data-col = "0"></div>
+                    <div class="cell" data-row = "1" data-col = "1"></div>
+                    <div class="cell" data-row = "1" data-col = "2"></div>
+                    <div class="cell" data-row = "1" data-col = "3"></div>
+    
+                    <div class="cell" data-row = "2" data-col = "0"></div>
+                    <div class="cell" data-row = "2" data-col = "1"></div>
+                    <div class="cell" data-row = "2" data-col = "2"></div>
+                    <div class="cell" data-row = "2" data-col = "3"></div>
+    
+                    <div class="cell" data-row = "3" data-col = "0"></div>
+                    <div class="cell" data-row = "3" data-col = "1"></div>
+                    <div class="cell" data-row = "3" data-col = "2"></div>
+                    <div class="cell" data-row = "3" data-col = "3"></div>
+                </div>
+            </div>
+        </main>
+        <div class = "rack">
+            <div class = "tile" draggable="true" data-row = -1 data-col = -1 data-grid = "N" data-value=7>7</div>
+            <div class = "tile" draggable="true" data-row = -1 data-col = -1 data-grid = "N" data-value=8>8</div>
+            <button onclick = "endTurn()">End Turn</button>
         </div>
     </body>
 </html>

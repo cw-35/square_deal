@@ -3,22 +3,16 @@ body {
     padding: 40px;
 }
 
+main {
+    overflow: auto;
+}  
+
 h1 {
     text-align: center;
 }
 
 h3 {
     margin-top: 50px;
-}
-
-.menu {
-    margin: 100px auto 0px auto;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: 500px;
-    gap: 30px;
 }
 
 button {
@@ -31,6 +25,79 @@ button {
     border: none;
     border-radius: 4px;
 
-    
     cursor: pointer;
+}
+
+header {
+    display: flex;
+}
+
+.menu {
+    margin: 100px auto 0px auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 500px;
+    gap: 30px;
+}
+
+.grid {
+    margin: 10px auto 0px auto;
+    width: 400px;
+    height: 400px;
+
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(4, 1fr);
+    gap: 10px;
+}
+
+.cell {
+    background-color: gainsboro;
+    border-radius: 4px;
+    aspect-ratio: 1 / 1;
+    display: grid;
+    place-items: center;
+    font-weight: 1000;
+    font-size: 50px;
+}
+
+.wrapper {
+    display: flex;
+    gap: 24px;
+}
+
+.score {
+    margin: auto 50px auto 50px;
+}
+
+.rack {
+    padding: 50px 20px;
+    border-top: 1px solid #ddd;
+    background-color: white;
+}
+
+@media (max-width: 1000px) {
+    .wrapper {
+        flex-direction: column;
+        align-items: center;
+    }
+}
+
+.tile {
+    cursor: grab;
+    user-select: none;
+    width: 90px;
+    height: 90px;
+    display: grid;
+    place-items: center;
+    background-color: khaki;
+    border-radius: 4px;
+    font-weight: 1000;
+    font-size: 50px;
+}
+
+.tile:active{
+    cursor: grabbing;
 }
