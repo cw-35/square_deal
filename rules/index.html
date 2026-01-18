@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset = "UTF-8"/>
+        <meta name = "viewport" content = "width=device-width, initial-scale=1.0" />
+        <title>Square Deal Rules</title>
+        <link rel = "stylesheet" href = "/style.css" />
+        <script src="/script.js"></script>
+    </head>
+    <body>
+        <button onclick = "goTo('/')">← Back to Home</button>
+        <h1 class = "title">Rules</h1>
+        <div>
+            <h3>HOW TO PLAY:</h3>
+            <ul>
+                <p>
+                    1. Square deal is a game for two players, played over a number of rounds.
+                </p>
+                <p>
+                    2. In each round both players have a 4 x 4 grid onto which numbered tiles are placed.
+                </p>
+                <p>
+                    3. You have a bag with 34 tiles containing the following: 0 0 1 1 1 2 2 2 2 3 3 3 3 3 4 4 4 
+                    4 4 4 5 5 5 5 5 6 6 6 6 7 7 7 8 8
+                </p>
+                <p>
+                    4. Players take turns to withdraw two tiles at a time from the bag, at random.
+                </p>
+                <p>
+                    5. At each turn, one of the two tiles must be placed on the player's own grid and the other one placed on the 
+                    opponent's grid.
+                </p>
+                <p>
+                    6. Each player attempts to create rows and columns of four numbers that add up to a total that is a square number 
+                    (4, 9, 16, etc.) and tries to prevent the other player from doing so. The round continues until both grids are full.
+                </p>
+            </ul>
+            <h3>HOW TO SCORE:</h3>
+            <ul>
+                <p>
+                    1. A player's score for the round is the sum of the highest value row and the highest value column.
+                </p>
+                <p>
+                    2. The value of a row or column that adds up to a total which is a square number is the sum of the squares 
+                    of the individual numbers.
+                </p>
+                <p>
+                    3. A row or column that does not add up to a square number has a value of zero.
+                </p>
+                <p>
+                    4. For example, in the grid below, two rows add up to totals which are square nubmers. 4 + 1 + 7 + 4 = 16 
+                    and 2 + 5 + 0 + 2 = 9. The values of these rows are 4<sup>2</sup> + 1<sup>2</sup> + 7<sup>2</sup> + 4<sup>2</sup> 
+                    = 82 points and 2<sup>2</sup> + 5<sup>2</sup> + 0<sup>2</sup> + 2<sup>2</sup> = 33 points. There are no columns
+                    with totals that are square numbers. The player's score for this round is 82 (highest value row) + 0 (highest value
+                    column) = 82 points.
+                </p>
+            </ul>
+            <h3>HOW TO WIN:</h3>
+            <ul>
+                <p>
+                    1. The first player to reach an overall total of 900 points wins the game.
+                </p>
+                <p>
+                    2. If a player has a grid in any round with all four rows and all four columns adding up to totals which are square
+                    numbers is said to have made a Square Deal, and the player wins the game immediately.
+                </p>
+            </ul>
+        </div>
+    </body>
+</html>
