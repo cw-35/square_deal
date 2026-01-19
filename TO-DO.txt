@@ -1,7 +1,4 @@
-1. Fix a bug where the round ends earlier than it's supposed to be. (happens in after the first round)
-2. Prevent player from placing a tile if another tile is already there.
-3. Improve Rack UI
-4. Prevent player from placing on the same grid.
+TO-DO:
 5. Improve the overall design & UI.
 6. Add sound when player place the tile.
 7. Show which player's turn it is.
@@ -10,3 +7,10 @@
 10. Make sure the game is saved even tho you reload it.
 11. Make it mobile friendly.
 12. Play test.
+
+Done!:
+4. Prevent player from placing on the same grid.
+2. Prevent player from placing a tile if another tile is already there.
+1. Fix a bug where the round ends earlier than it's supposed to be. (happens in after the first round)
+3. Improve Rack UI
+13. Ensure that player put all tiles (no tiles in rack.)

@@ -10,7 +10,7 @@
     </head>
     <body>
         <header>
-            <button onclick = "goTo('/')">← Back to Home</button>
+            <button onclick = "goTo('/')" class = "returnBtn">← Back to Home</button>
             <div class = "score" id = "scoreA">Player A Score: 0</div>
             <div class = "score" id = "scoreB">Player B Score: 0</div>
         </header>
@@ -67,7 +67,7 @@
         <div class = "rack">
             <div class = "tile" draggable="true" data-row = -1 data-col = -1 data-grid = "N" data-value=7>7</div>
             <div class = "tile" draggable="true" data-row = -1 data-col = -1 data-grid = "N" data-value=8>8</div>
-            <button onclick = "endTurn()">End Turn</button>
+            <button onclick = "endTurn()" id = "endTurnBtn" hidden>End Turn</button>
         </div>
     </body>
 </html>

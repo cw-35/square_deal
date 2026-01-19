@@ -31,38 +31,58 @@ function endTurn() {
 
     const tiles = document.querySelectorAll(".tile");
     const rack = document.querySelector(".rack");
+    const endTurnBtn = document.querySelector("#endTurnBtn");
 
-    tiles.forEach(tile => {
-        const row = tile.dataset.row;
-        const col = tile.dataset.col;
+    var previousGrid = "N"
+    let invalidMove = false;
+
+    if (rack.querySelector(".tile") !== null) {alert("You must use both tiles!"); return;}
+
+    for (const tile of tiles) {
         const grid = tile.dataset.grid;
-        const value = tile.dataset.value;
-
-        const selector = `.cell[data-row='${row}'][data-col='${col}']`;
-        const cells = document.querySelectorAll(selector);
-
-        cells.forEach(cell => {
-            const cell_grid = cell.parentElement.dataset.grid;
-            if (cell_grid == grid) {
-                if (grid === "A") {
-                    gridA[row][col] = Number(value);
-                    cell.textContent = value;
-                } else if (grid === "B") {
-                    gridB[row][col] = Number(value);
-                    cell.textContent = value;
-                }
-            }
-        });
-
-        rack.appendChild(tile);
-    });
-
-    if (tilesBag.length <= 2) {
-        roundReset();
+        if (previousGrid === grid) {
+            alert("You can't place both tiles in the same grid!");
+            invalidMove = true;
+            break;
+        }
+        previousGrid = grid;
     }
 
-    turn += 1;
-    chooseTiles();
+    if (invalidMove === false){
+        
+        for (const tile of tiles) {
+            const row = tile.dataset.row;
+            const col = tile.dataset.col;
+            const grid = tile.dataset.grid;
+            const value = tile.dataset.value;
+    
+            const selector = `.cell[data-row='${row}'][data-col='${col}']`;
+            const cells = document.querySelectorAll(selector);
+    
+            cells.forEach(cell => {
+                const cell_grid = cell.parentElement.dataset.grid;
+                if (cell_grid == grid) {
+                    if (grid === "A") {
+                        gridA[row][col] = Number(value);
+                        cell.textContent = value;
+                    } else if (grid === "B") {
+                        gridB[row][col] = Number(value);
+                        cell.textContent = value;
+                    }
+                }
+            });
+    
+            rack.appendChild(tile);
+            endTurnBtn.hidden = true;
+        }
+
+        if (tilesBag.length <= 2) {
+            roundReset();
+        }
+    
+        turn += 1;
+        chooseTiles();
+    }
 
 }
 
@@ -97,7 +117,7 @@ function roundReset() {
     calculateScores();
 
     tilesBag = [0, 0, 1, 1, 1, 2, 2, 2, 2, 3, 3, 3, 3, 3, 4, 4, 4, 4, 4, 4, 5, 5, 5, 5, 5, 6, 6, 6, 6, 7, 7, 7, 8, 8];
-
+    
     gridA = [
         [-1, -1, -1, -1],
         [-1, -1, -1, -1],
@@ -111,8 +131,6 @@ function roundReset() {
         [-1, -1, -1, -1],
         [-1, -1, -1, -1]
     ];
-
-    chooseTiles();
 
 }
 
@@ -166,8 +184,6 @@ function calculateScores() {
     //check rows B
     gridB.forEach(function (list, index) {
         sum = listSum(list);
-        console.log(list);
-        console.log(sum);
         if (squares.includes(sum) && sum > rowMaxB) {
             const squaredNumbers = list.map(num => num * num);
             rowMaxB = sum;
@@ -222,15 +238,16 @@ function listSum(numbers) {
 }
 
 function init() {
-    console.log("loaded!")
+
     const tiles = document.querySelectorAll(".tile");
     const cells = document.querySelectorAll(".cell");
+    const rack = document.querySelector(".rack");
+    const endTurnBtn = document.querySelector("#endTurnBtn");
 
     tiles.forEach(tile => {
         tile.addEventListener("dragstart", (e) => {
             e.dataTransfer.setData("text/plain", tile.dataset.value);
             currentTile = tile;
-            console.log("hi")
         });
     });
     
@@ -244,7 +261,9 @@ function init() {
         cell.addEventListener("drop", (e) => {
 
             e.preventDefault();
-            const value = Number(e.dataTransfer.getData("text/plain"));
+
+            if (cell.querySelector(".tile") !== null) {return;}
+
             const column = Number(cell.dataset.col);
             const row = Number(cell.dataset.row);
             const grid = cell.parentElement.dataset.grid;
@@ -255,6 +274,7 @@ function init() {
                     currentTile.dataset.col = column;
                     currentTile.dataset.grid = grid;
                     cell.appendChild(currentTile);
+                    if (rack.querySelector(".tile") == null) {endTurnBtn.hidden = false;}
                 }
                 
             } else {
@@ -263,6 +283,7 @@ function init() {
                     currentTile.dataset.col = column;
                     currentTile.dataset.grid = grid;
                     cell.appendChild(currentTile);
+                    if (rack.querySelector(".tile") == null) {endTurnBtn.hidden = false;}
                 }
             }
 
