@@ -20,6 +20,7 @@ var scoreB = 0;
 var tilesBag = [0, 0, 1, 1, 1, 2, 2, 2, 2, 3, 3, 3, 3, 3, 4, 4, 4, 4, 4, 4, 5, 5, 5, 5, 5, 6, 6, 6, 6, 7, 7, 7, 8, 8];
 
 var currentTile;
+var gameOver = false;
 
 function goTo(path) {
 
@@ -83,32 +84,36 @@ function endTurn() {
             const allCells = document.querySelectorAll(".cell");
             const body = document.querySelector("body");
             const returnBtn = document.querySelector(".returnBtn");
-            if (turn % 2 == 0) {
 
-                endTurnBtn.style.backgroundColor = "#fc9272";
-                tiles.forEach(tile => {
-                    tile.style.backgroundColor = "khaki";
-                });
-                allCells.forEach(cell => {
-                    cell.style.backgroundColor = "#fb4444"
-                })
-                body.style.backgroundColor = "#fdc7c7";
-                rack.style.backgroundColor = "#ea2b1f";
-                returnBtn.style.backgroundColor = "#ff847c";
-                
-            } else {
-                endTurnBtn.style.backgroundColor = "#70d6ff";
-                tiles.forEach(tile => {
-                    tile.style.backgroundColor = "khaki";
-                });
-                allCells.forEach(cell => {
-                    cell.style.backgroundColor = "#00b4d8"
-                })
-                body.style.backgroundColor = "#caf0f8";
-                rack.style.backgroundColor = "#1982c4";
-                returnBtn.style.backgroundColor = "#70d6ff";
+            let isBot = document.querySelector("html").classList.contains("bot");
+
+            if (isBot === false) {
+                if (turn % 2 == 0) {
+
+                    endTurnBtn.style.backgroundColor = "#fc9272";
+                    tiles.forEach(tile => {
+                        tile.style.backgroundColor = "khaki";
+                    });
+                    allCells.forEach(cell => {
+                        cell.style.backgroundColor = "#fb4444"
+                    })
+                    body.style.backgroundColor = "#fdc7c7";
+                    rack.style.backgroundColor = "#ea2b1f";
+                    returnBtn.style.backgroundColor = "#ff847c";
+                    
+                } else {
+                    endTurnBtn.style.backgroundColor = "#70d6ff";
+                    tiles.forEach(tile => {
+                        tile.style.backgroundColor = "khaki";
+                    });
+                    allCells.forEach(cell => {
+                        cell.style.backgroundColor = "#00b4d8"
+                    })
+                    body.style.backgroundColor = "#caf0f8";
+                    rack.style.backgroundColor = "#1982c4";
+                    returnBtn.style.backgroundColor = "#70d6ff";
+                }
             }
-
 
         }
 
@@ -116,6 +121,15 @@ function endTurn() {
             roundReset();
         }
         chooseTiles();
+
+        let isBot = document.querySelector("html").classList.contains("bot");
+        console.log(isBot);
+        if (isBot === true) {
+            if (turn % 2 === 0) {
+                botTurn();
+            }
+        }
+
     }
 
 }
@@ -140,6 +154,26 @@ function chooseTiles() {
 }
 
 function roundReset() {
+
+    let squareDealA = isSquareDeal(gridA);
+    let squareDealB = isSquareDeal(gridB);
+
+    if (squareDealA === true && squareDealB === true) {
+        inform("Square Deal!", "It's a tie!");
+        gameOver = true;
+        return;
+    } else {
+        if (squareDealA === true) {
+            inform("Square Deal!", "Blue wins!");
+            gameOver = true;
+            return;
+        } else if (squareDealB == true){
+            inform("Square Deal!", "Red wins!");
+            gameOver = true;
+            return;
+        }
+    }
+
     const cells = document.querySelectorAll(".cell");
 
     cells.forEach(cell => {
@@ -152,7 +186,14 @@ function roundReset() {
 
     let [sumA, sumB] = calculateScores();
 
-    inform("Round Over!", `Player Blue: +${sumA} points\nPlayer Red: +${sumB} points`)
+    if (gameOver === false) {
+        let isBot = document.querySelector("html").classList.contains("bot");
+        if (isBot === true) {
+            inform("Round Over!", `Player: +${sumA} points\nBot: +${sumB} points`);
+        } else {
+            inform("Round Over!", `Player Blue: +${sumA} points\nPlayer Red: +${sumB} points`);
+        }
+    }
 
     tilesBag = [0, 0, 1, 1, 1, 2, 2, 2, 2, 3, 3, 3, 3, 3, 4, 4, 4, 4, 4, 4, 5, 5, 5, 5, 5, 6, 6, 6, 6, 7, 7, 7, 8, 8];
     
@@ -249,18 +290,28 @@ function calculateScores() {
     scoreA += sumA;
     scoreB += sumB;
 
-    scoreCounterA.textContent = `Player Blue Score: ${scoreA}`;
-    scoreCounterB.textContent = `Player Red Score: ${scoreB}`;
+    let isBot = document.querySelector("html").classList.contains("bot");
+
+    if (isBot === true) {
+        scoreCounterA.textContent = `Player Score: ${scoreA}`;
+        scoreCounterB.textContent = `Bot Score: ${scoreB}`;
+    } else {
+        scoreCounterA.textContent = `Player Blue Score: ${scoreA}`;
+        scoreCounterB.textContent = `Player Red Score: ${scoreB}`;
+    }
 
     if (scoreA >= 900) {
         if (scoreB >= 900) {
             inform("Game Over!", "It's a tie!");
+            gameOver = true;
         } else {
             inform("Game Over!", "Blue wins!");
+            gameOver = true;
         }
     } else {
         if (scoreB >= 900) {
             inform("Game Over!", "Red wins!");
+            gameOver = true;
         }
     }
 
@@ -300,12 +351,87 @@ function inform(title, content){
 function closeModal() {
     const modal = document.getElementById("modal");
     modal.classList.remove("open");
+    if (gameOver === true) {
+        window.location.reload();
+    }
 }
 
 function playSound(src) {
     let audio = new Audio(src);
     audio.play();
 }
+
+function isSquareDeal(grid) {
+    function isPerfectSquare(n) {
+        if (n < 0) return false;
+        const r = Math.sqrt(n);
+        return Number.isInteger(r);
+    }
+
+    const N = 4;
+
+    for (let r = 0; r < N; r++) {
+        let sum = 0;
+        for (let c = 0; c < N; c++) {
+            sum += grid[r][c];
+        }
+        if (!isPerfectSquare(sum)) return false;
+    }
+
+    for (let c = 0; c < N; c++) {
+        let sum = 0;
+        for (let r = 0; r < N; r++) {
+            sum += grid[r][c];
+        }
+        if (!isPerfectSquare(sum)) return false;
+    }
+
+    return true;
+}
+
+function botTurn() {
+    let [ai, aj] = selectRandomCell(gridA);
+    let [bi, bj] = selectRandomCell(gridB);
+    const tiles = document.querySelectorAll(".tile");
+    const tile1 = tiles[0];
+    const tile2 = tiles[1];
+    const playerGrid = document.querySelector(".grid[data-grid='A']");
+    const botGrid = document.querySelector(".grid[data-grid='B']");
+    const cellA = playerGrid.querySelector(`.cell[data-row='${ai}'][data-col='${aj}']`);
+    const cellB = botGrid.querySelector(`.cell[data-row='${bi}'][data-col='${bj}']`);
+
+    console.log(cellA, cellB);
+
+    tile1.dataset.row = ai;
+    tile1.dataset.col = aj;
+    tile1.dataset.grid = "A";
+    cellA.appendChild(tile1);
+
+    tile2.dataset.row = bi;
+    tile2.dataset.col = bj;
+    tile2.dataset.grid = "B";
+    cellB.appendChild(tile2);
+    endTurn();
+}
+
+function selectRandomCell(grid) {
+    let count = 0;
+    let chosen = null;
+  
+    for (let i = 0; i < grid.length; i++) {
+      for (let j = 0; j < grid[i].length; j++) {
+        if (grid[i][j] == -1) {
+          count++;
+          if (Math.random() < 1 / count) {
+            chosen = [i, j];
+          }
+        }
+      }
+    }
+  
+    return chosen;
+}
+
 
 function init() {
 
@@ -381,7 +507,6 @@ function init() {
     });
 
     chooseTiles();
-
 }
 
 document.addEventListener("DOMContentLoaded", init);

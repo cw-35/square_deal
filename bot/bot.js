@@ -87,7 +87,10 @@ function endTurn() {
             roundReset();
         }
         chooseTiles();
-        if (turn % 2 == 0) {
+
+        let isBot = document.querySelector("html").classList.contains("bot");
+        console.log(isBot);
+        if (isBot === true) {
             botTurn();
         }
     }
@@ -113,6 +116,23 @@ function chooseTiles() {
 }
 
 function roundReset() {
+
+    let squareDealA = isSquareDeal(gridA);
+    let squareDealB = isSquareDeal(gridB);
+
+    if (squareDealA === true && squareDealB === true) {
+        inform("Game Over!", "It's a tie!");
+        return;
+    } else {
+        if (squareDealA === true) {
+            inform("Game Over!", "Blue wins!");
+            return;
+        } else if (squareDealB == true){
+            inform("Game Over!", "Red wins!");
+            return;
+        }
+    }
+
     const cells = document.querySelectorAll(".cell");
 
     cells.forEach(cell => {
@@ -291,8 +311,6 @@ function botTurn() {
     const cellA = playerGrid.querySelector(`.cell[data-row='${ai}'][data-col='${aj}']`);
     const cellB = botGrid.querySelector(`.cell[data-row='${bi}'][data-col='${bj}']`);
 
-    console.log(cellA, cellB);
-
     tile1.dataset.row = ai;
     tile1.dataset.col = aj;
     tile1.dataset.grid = "A";
@@ -321,8 +339,35 @@ function selectRandomCell(grid) {
     }
   
     return chosen;
-  }
+}
   
+function isSquareDeal(grid) {
+    function isPerfectSquare(n) {
+        if (n < 0) return false;
+        const r = Math.sqrt(n);
+        return Number.isInteger(r);
+    }
+
+    const N = 4;
+
+    for (let r = 0; r < N; r++) {
+        let sum = 0;
+        for (let c = 0; c < N; c++) {
+            sum += grid[r][c];
+        }
+        if (!isPerfectSquare(sum)) return false;
+    }
+
+    for (let c = 0; c < N; c++) {
+        let sum = 0;
+        for (let r = 0; r < N; r++) {
+            sum += grid[r][c];
+        }
+        if (!isPerfectSquare(sum)) return false;
+    }
+
+    return true;
+}
 
 function init() {
 
