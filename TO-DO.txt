@@ -1,5 +1,4 @@
 TO-DO:
-5. Improve the overall design & UI.
 6. Add sound when player place the tile.
 7. Show which player's turn it is.
 8. Use blue for player A's tile and red for player B's tile.
@@ -14,3 +13,4 @@ Done!:
 1. Fix a bug where the round ends earlier than it's supposed to be. (happens in after the first round)
 3. Improve Rack UI
 13. Ensure that player put all tiles (no tiles in rack.)
+5. Improve the overall design & UI.

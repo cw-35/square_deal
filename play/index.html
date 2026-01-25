@@ -5,17 +5,29 @@
         <meta name = "viewport" content = "width=device-width, initial-scale=1.0" />
         <title>Square Deal</title>
         <link rel = "stylesheet" href = "/style.css" />
+        <script src="https://cdn.jsdelivr.net/npm/js-confetti@latest/dist/js-confetti.browser.js"></script>
         <script src="/script.js"></script>
     </head>
     <body class = "play">
+        <div class = "modal" id = "modal">
+            <div class = "modal-inner">
+                <h2>Title</h2>
+                <p>
+                    Text Content
+                </p>
+                <button id = "closeModal" onclick = "closeModal()">
+                    Ok!
+                </button>
+            </div>
+        </div>
         <header>
             <button onclick = "goTo('/')" class = "returnBtn">← Back to Home</button>
-            <div class = "score" id = "scoreA">Player A Score: 0</div>
-            <div class = "score" id = "scoreB">Player B Score: 0</div>
+            <div class = "score" id = "scoreA">Player Blue Score: 0</div>
+            <div class = "score" id = "scoreB">Player Red Score: 0</div>
         </header>
         <main class = "wrapper play">
             <div>
-                <p>Player A:</p>
+                <p style = "color:blue">Player Blue Grid:</p>
                 <div class = "grid" data-grid = "A">
                     <div class="cell" data-row = "0" data-col = "0"></div>
                     <div class="cell" data-row = "0" data-col = "1"></div>
@@ -39,7 +51,7 @@
                 </div>
             </div>
             <div>
-                <p>Player B:</p>
+                <p style = "color:red">Player Red Grid:</p>
                 <div class = "grid" data-grid = "B">
                     <div class="cell" data-row = "0" data-col = "0"></div>
                     <div class="cell" data-row = "0" data-col = "1"></div>

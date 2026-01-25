@@ -77,38 +77,9 @@ function endTurn() {
             });
 
             turn += .5;
-
+            tile.style.opacity = 1;
             rack.appendChild(tile);
             endTurnBtn.hidden = true;
-            const allCells = document.querySelectorAll(".cell");
-            const body = document.querySelector("body");
-            const returnBtn = document.querySelector(".returnBtn");
-            if (turn % 2 == 0) {
-
-                endTurnBtn.style.backgroundColor = "#fc9272";
-                tiles.forEach(tile => {
-                    tile.style.backgroundColor = "khaki";
-                });
-                allCells.forEach(cell => {
-                    cell.style.backgroundColor = "#fb4444"
-                })
-                body.style.backgroundColor = "#fdc7c7";
-                rack.style.backgroundColor = "#ea2b1f";
-                returnBtn.style.backgroundColor = "#ff847c";
-                
-            } else {
-                endTurnBtn.style.backgroundColor = "#70d6ff";
-                tiles.forEach(tile => {
-                    tile.style.backgroundColor = "khaki";
-                });
-                allCells.forEach(cell => {
-                    cell.style.backgroundColor = "#00b4d8"
-                })
-                body.style.backgroundColor = "#caf0f8";
-                rack.style.backgroundColor = "#1982c4";
-                returnBtn.style.backgroundColor = "#70d6ff";
-            }
-
 
         }
 
@@ -116,12 +87,14 @@ function endTurn() {
             roundReset();
         }
         chooseTiles();
+        if (turn % 2 == 0) {
+            botTurn();
+        }
     }
 
 }
 
 function chooseTiles() {
-
     const tiles = document.querySelectorAll(".tile");
     tiles.forEach(tile=> {
 
@@ -152,7 +125,7 @@ function roundReset() {
 
     let [sumA, sumB] = calculateScores();
 
-    inform("Round Over!", `Player Blue: +${sumA} points\nPlayer Red: +${sumB} points`)
+    inform("Round Over!", `Player: +${sumA} points\nBot: +${sumB} points`)
 
     tilesBag = [0, 0, 1, 1, 1, 2, 2, 2, 2, 3, 3, 3, 3, 3, 4, 4, 4, 4, 4, 4, 5, 5, 5, 5, 5, 6, 6, 6, 6, 7, 7, 7, 8, 8];
     
@@ -249,18 +222,18 @@ function calculateScores() {
     scoreA += sumA;
     scoreB += sumB;
 
-    scoreCounterA.textContent = `Player Blue Score: ${scoreA}`;
-    scoreCounterB.textContent = `Player Red Score: ${scoreB}`;
+    scoreCounterA.textContent = `Player Score: ${scoreA}`;
+    scoreCounterB.textContent = `Bot Score: ${scoreB}`;
 
     if (scoreA >= 900) {
         if (scoreB >= 900) {
             inform("Game Over!", "It's a tie!");
         } else {
-            inform("Game Over!", "Blue wins!");
+            inform("Game Over!", "Player wins!");
         }
     } else {
         if (scoreB >= 900) {
-            inform("Game Over!", "Red wins!");
+            inform("Game Over!", "Bot wins!");
         }
     }
 
@@ -306,6 +279,50 @@ function playSound(src) {
     let audio = new Audio(src);
     audio.play();
 }
+
+function botTurn() {
+    let [ai, aj] = selectRandomCell(gridA);
+    let [bi, bj] = selectRandomCell(gridB);
+    const tiles = document.querySelectorAll(".tile");
+    const tile1 = tiles[0];
+    const tile2 = tiles[1];
+    const playerGrid = document.querySelector(".grid[data-grid='A']");
+    const botGrid = document.querySelector(".grid[data-grid='B']");
+    const cellA = playerGrid.querySelector(`.cell[data-row='${ai}'][data-col='${aj}']`);
+    const cellB = botGrid.querySelector(`.cell[data-row='${bi}'][data-col='${bj}']`);
+
+    console.log(cellA, cellB);
+
+    tile1.dataset.row = ai;
+    tile1.dataset.col = aj;
+    tile1.dataset.grid = "A";
+    cellA.appendChild(tile1);
+
+    tile2.dataset.row = bi;
+    tile2.dataset.col = bj;
+    tile2.dataset.grid = "B";
+    cellB.appendChild(tile2);
+    endTurn();
+}
+
+function selectRandomCell(grid) {
+    let count = 0;
+    let chosen = null;
+  
+    for (let i = 0; i < grid.length; i++) {
+      for (let j = 0; j < grid[i].length; j++) {
+        if (grid[i][j] == -1) {
+          count++;
+          if (Math.random() < 1 / count) {
+            chosen = [i, j];
+          }
+        }
+      }
+    }
+  
+    return chosen;
+  }
+  
 
 function init() {
 

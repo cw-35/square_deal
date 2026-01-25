@@ -19,7 +19,7 @@ main.play {
 
 body {
     padding: 40px;
-    background-color: #caf0f8;
+    background-color: #d0f0c0;
     font-family: "Amatic SC", sans-serif;
     overflow-y: auto;
 }
@@ -99,7 +99,7 @@ header {
 }
 
 .cell {
-    background-color: #00b4d8;
+    background-color: #3bb143;
     border-radius: 4px;
     aspect-ratio: 1 / 1;
     display: grid;
@@ -139,7 +139,7 @@ main.wrapper {
     align-items: center;
     justify-content: center;
     gap: 50px;
-    background-color: #1982c4;
+    background-color: #00a86b;
     border-radius: 10px;
 }
 
@@ -175,7 +175,7 @@ main.wrapper {
     padding: 12px 20px;
     width: 200px;
 
-    background-color: #70d6ff;
+    background-color: #66ff00;
 
     font-family: "Amatic SC", sans-serif;
     font-weight: 750;
@@ -199,7 +199,7 @@ main.wrapper {
     padding: 12px 20px;
     width: 200px;
 
-    background-color: #70d6ff;
+    background-color: #98fb98;
 
     font-family: "Amatic SC", sans-serif;
     font-weight: 1000;
