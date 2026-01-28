@@ -4,7 +4,7 @@
         <meta charset = "UTF-8"/>
         <meta name = "viewport" content = "width=device-width, initial-scale=1.0" />
         <title>Square Deal</title>
-        <link rel = "stylesheet" href = "/bot/ bot.css" />
+        <link rel = "stylesheet" href = "/style.css" />
         <script src="https://cdn.jsdelivr.net/npm/js-confetti@latest/dist/js-confetti.browser.js"></script>
         <script src="/script.js"></script>
     </head>
@@ -22,12 +22,11 @@
         </div>
         <header>
             <button onclick = "goTo('/')" class = "returnBtn">← Back to Home</button>
-            <div class = "score" id = "scoreA">Player Score: 0</div>
-            <div class = "score" id = "scoreB">Bot Score: 0</div>
         </header>
         <main class = "wrapper play">
             <div>
-                <p style = "color:blue">Player Grid:</p>
+                <div class = "score" id = "scoreA">Player Score: 0</div>
+                <p style = "color:blue; text-align: center;">Player Grid:</p>
                 <div class = "grid" data-grid = "A">
                     <div class="cell" data-row = "0" data-col = "0"></div>
                     <div class="cell" data-row = "0" data-col = "1"></div>
@@ -51,7 +50,8 @@
                 </div>
             </div>
             <div>
-                <p style = "color:red">Bot Grid:</p>
+                <div class = "score" id = "scoreB">Bot Score: 0</div>
+                <p style = "color:red; text-align: center;">Bot Grid:</p>
                 <div class = "grid" data-grid = "B">
                     <div class="cell" data-row = "0" data-col = "0"></div>
                     <div class="cell" data-row = "0" data-col = "1"></div>

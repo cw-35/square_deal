@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Amatic+SC:wght@400;700&family=Press+Start+2P&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=DynaPuff:wght@400..700&display=swap');
 
 html.play {
     height: 100%;
@@ -20,8 +21,9 @@ main.play {
 body {
     padding: 40px;
     background-color: #caf0f8;
-    font-family: "Amatic SC", sans-serif;
+    font-family: "DynaPuff", sans-serif;
     overflow-y: auto;
+    color: black;
 }
 
 main {
@@ -43,7 +45,7 @@ h3 {
 }
 
 p{
-    font-weight: 750;
+    font-weight: 400;
     font-size: 30px;
 }
 
@@ -54,19 +56,32 @@ button:active {
 .menu
 button {
     padding: 12px 20px;
-    width: 250px;
-    font-size: 16px;
+    width: 325px;
 
     background-color: #00b4d8;
 
-    font-family: "Amatic SC", sans-serif;
-    font-weight: 750;
-    font-size: 40px;
+    font-family: "DynaPuff", sans-serif;
+    font-weight: 500;
+    font-size: 30px;
 
     border: none;
     border-radius: 4px;
 
     cursor: pointer;
+}
+
+.menu
+.credit-btn {
+    width: 150px;
+    font-weight: 300;
+    font-size: 25px;
+    position: fixed;
+    bottom: 50px;
+
+}
+
+.credit {
+    text-align: center;
 }
 
 button:hover {
@@ -84,7 +99,7 @@ header {
     justify-content: center;
     align-items: center;
     width: 500px;
-    gap: 30px;
+    gap: 50px;
 }
 
 .grid {
@@ -104,7 +119,7 @@ header {
     aspect-ratio: 1 / 1;
     display: grid;
     place-items: center;
-    font-weight: 1000;
+    font-weight: 100;
     font-size: 50px;
 }
 
@@ -125,7 +140,8 @@ main.wrapper {
 .score {
     margin: auto 50px auto 50px;
     font-size: 40px;
-    font-weight: 750;
+    font-weight: 300;
+    text-align: center;
 }
 
 .rack {
@@ -152,7 +168,7 @@ main.wrapper {
     place-items: center;
     background-color: khaki;
     border-radius: 4px;
-    font-weight: 1000;
+    font-weight: 400;
     font-size: 50px;
 }
 
@@ -177,9 +193,9 @@ main.wrapper {
 
     background-color: #70d6ff;
 
-    font-family: "Amatic SC", sans-serif;
-    font-weight: 750;
-    font-size: 30px;
+    font-family: "DynaPuff", sans-serif;
+    font-weight: 300;
+    font-size: 20px;
 
     border: none;
     border-radius: 4px;
@@ -201,8 +217,8 @@ main.wrapper {
 
     background-color: #70d6ff;
 
-    font-family: "Amatic SC", sans-serif;
-    font-weight: 1000;
+    font-family: "DynaPuff", sans-serif;
+    font-weight: 400;
     font-size: 30px;
 
     border: none;
@@ -263,7 +279,7 @@ button {
 
     background-color: rgb(54, 255, 47);
 
-    font-family: "Amatic SC", sans-serif;
+    font-family: "DynaPuff", sans-serif;
     font-weight: 750;
     font-size: 20px;
 

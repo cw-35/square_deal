@@ -22,12 +22,11 @@
         </div>
         <header>
             <button onclick = "goTo('/')" class = "returnBtn">← Back to Home</button>
-            <div class = "score" id = "scoreA">Player Blue Score: 0</div>
-            <div class = "score" id = "scoreB">Player Red Score: 0</div>
         </header>
         <main class = "wrapper play">
             <div>
-                <p style = "color:blue">Player Blue Grid:</p>
+                <div class = "score" id = "scoreA">Player Blue Score: 0</div>
+                <p style = "color:blue; text-align: center;" >Player Blue Grid</p>
                 <div class = "grid" data-grid = "A">
                     <div class="cell" data-row = "0" data-col = "0"></div>
                     <div class="cell" data-row = "0" data-col = "1"></div>
@@ -51,7 +50,8 @@
                 </div>
             </div>
             <div>
-                <p style = "color:red">Player Red Grid:</p>
+                <div class = "score" id = "scoreB">Player Red Score: 0</div>
+                <p style = "color:red; text-align: center;">Player Red Grid</p>
                 <div class = "grid" data-grid = "B">
                     <div class="cell" data-row = "0" data-col = "0"></div>
                     <div class="cell" data-row = "0" data-col = "1"></div>
