@@ -432,6 +432,10 @@ function selectRandomCell(grid) {
     return chosen;
 }
 
+function help() {
+    window.open("rules.html");
+
+}
 
 function init() {
 
