@@ -433,7 +433,7 @@ function selectRandomCell(grid) {
 }
 
 function help() {
-    window.open("rules.html");
+    window.open("/rules");
 
 }
 
