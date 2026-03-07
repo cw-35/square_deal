@@ -189,9 +189,9 @@ function roundReset() {
     if (gameOver === false) {
         let isBot = document.querySelector("html").classList.contains("bot");
         if (isBot === true) {
-            inform("Round Over!", `Player: +${sumA} points\nBot: +${sumB} points`);
+            inform("Round Over!", `Player: +${sumA} points\nBot: +${sumB} points\n\n[Code: Beta]`);
         } else {
-            inform("Round Over!", `Player Blue: +${sumA} points\nPlayer Red: +${sumB} points`);
+            inform("Round Over!", `Player Blue: +${sumA} points\nPlayer Red: +${sumB} points\n\n[Code: Beta]`);
         }
     }
 
@@ -302,15 +302,15 @@ function calculateScores() {
 
     if (scoreA >= 900) {
         if (scoreB >= 900) {
-            inform("Game Over!", "It's a tie!");
+            inform("Game Over!", "It's a tie!\n\n[Code: Beta]");
             gameOver = true;
         } else {
-            inform("Game Over!", "Blue wins!");
+            inform("Game Over!", "Blue wins!\n\n[Code: Beta]");
             gameOver = true;
         }
     } else {
         if (scoreB >= 900) {
-            inform("Game Over!", "Red wins!");
+            inform("Game Over!", "Red wins!\n\n[Code: Beta]");
             gameOver = true;
         }
     }
